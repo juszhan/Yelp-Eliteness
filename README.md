@@ -69,6 +69,7 @@ Exact features weights can be found in the [notebook](yelp_eliteness-support_vec
 ### Support Vector Analysis
 
 Out of the 40k users in the training set, **3,057** were support vectors.
+
 | Support Vector Type | Count	|
 |---	              |---  	|
 | Non-elite           | 1529    |
@@ -81,7 +82,8 @@ for user in support_vectors:
     user_score = sum(feature_value * feature_weight for feature_value, feature_weight in zip(user.iteritems(), svm.coef_))
 ~~~
 
-The table below shows the user score simple statistics for each support vector class.  
+The table below shows the user score simple statistics for each support vector class.
+
 | Score Type |  Mean	|  std 	|  Min 	 |  Max   |
 |---	     |---	    |---	|---	 |---	  |
 | Non-elite  | 12306    | 14586 | -64014 | 290110 |
