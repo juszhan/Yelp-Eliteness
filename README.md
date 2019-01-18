@@ -59,7 +59,7 @@ The best baseline accuracy achieved was **92.32%**, indicated by the green bars 
 
 ![SVM coefficients weights](img_res/feature_weights_minmaxscaler.png)
 
-*Review Count* was the strongest indicator for Eliteness, while *funny* votes sent by the user was the most negative indicator for Eliteness.
+*review_count* was the strongest indicator for Eliteness, while *funny* votes sent by the user was the most negative indicator for Eliteness.
 > Advertising is Yelp's primary business model - to drive user conversion rates. Yelp wants their user reviews to influence the site visitor's decision to spend money at a business. Thus, the product is the crowd-sourced user reviews. More user reviews translate to a more valuable platform. 
 >
 > (Opinion) Let's assume the majority of site visitors are not using Yelp for entertainment. The site visitors are looking for quality reviews to help them make decisions. A user browsing Yelp for fun is not looking to make a spending decision. Intuitively, funny votes sent by the user do not necessary lead to a conversion. 
