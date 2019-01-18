@@ -1,6 +1,6 @@
 # Yelp Eliteness
 
-![Title Graphic](assets/Title.png)
+![Title Graphic](assets/Title2.png)
 <!-- <img src="assets/Title.png" width=100%> -->
 
 ## What is Yelp Elite?
