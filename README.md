@@ -20,7 +20,7 @@ The [Yelp Open Dataset](https://www.yelp.com/dataset) contains of over 1.5 milli
 
 ![Yelp User Eliteness Demographic](assets/Yelp_User_Eliteness_Demographic.png)
 
-An equal-weighted 50k random subsample was used for the analysis.  
+An equal-class-weighted 50k random subsample was used for the analysis.  
 * 25k Non-Elite users
 * 25k Elite users
 
@@ -30,7 +30,7 @@ Dataset documentation can be found [here](https://www.yelp.com/dataset/documenta
 
 An approach using a linear SVM classifier (SVC):
 1. Apply normalization using MinMaxScaler
-2. Create a {80/20} : {training/test} split
+2. Create a *80|20* : *training|test* stratified split
 2. Find best C with StratifiedKfold cross-validation using the training set, where K = 5
 3. Fit the SVC with the best C using the training data
 4. Predict on the test data
@@ -42,6 +42,17 @@ An approach using a linear SVM classifier (SVC):
 
 The SVC had a **95.44%** accuracy classifying non-Elite and Elite users.
 
+### Baseline Comparision
+
+Predicting the majority class will yield 50% accuracy since the subsample is equal-class-weight and the splits are stratified.
+
+Intuition tells us users whom receive *compliment_writer* **or** *compliment_photo* should be Elite users by the quality of their reviews.
+
+![Baseline Comparision Graphic](img_res/baseline_quantile_comparision_minmaxscaler.png)
+
+The best baseline accuracy achieved was **92.32%**, indicated by the green bars in the figure above. 
+> This is suspiciously close the the SVC accuracy. However, this is no surprise as the majority of non-Elite users receive zero compliments and the majority of the users in the data set are non-Elite. 
+
 ### SVM Feature Weights
 
 ![SVM coefficients weights](img_res/feature_weights_minmaxscaler.png)
@@ -51,7 +62,7 @@ The SVC had a **95.44%** accuracy classifying non-Elite and Elite users.
 >
 > (Opinion) Let's assume the majority of site visitors are not using Yelp for entertainment. The site visitors are looking for quality reviews to help them make decisions. A user browsing Yelp for fun is not looking to make a spending decision. Intuitively, funny votes sent by the user do not necessary lead to a conversion. 
 
-Exact features weights can be found in the [notebook](yelp_project-support_vector.ipynb).
+Exact features weights can be found in the [notebook](yelp_eliteness-support_vector.ipynb).
 
 ### Support Vector Analysis
 
@@ -76,7 +87,7 @@ The table below shows the user score simple statistics for each support vector c
 
 The graph below shows the support vector user score histogram:
 
-![](support_vector_score_histogram_auto-bin.png)
+![](img_res/support_vector_score_histogram_auto-bin.png)
 
 Using the strongest indicator for Eliteness, a prospective Elite user need on approximately **70 reviews** to meet the average Elite user score.
 
@@ -90,8 +101,16 @@ False negatives:
 Annual Elite Status:
 > Eliteness only lasts for one year, the user must reapply annually. The preprocessing use the *years Elite* as the binary class attribute.
 >
-> The requirements for Eliteness may change year-to-year. The analysis does not account for the user score evolution over time. Unfortunately, the dataset only provide an users aggregate summary.
+> The requirements for Eliteness may change year-to-year. The analysis does not account for the user score evolution over time. Unfortunately, the dataset only provide a users aggregate summary.
+
+Dataset Quality:  
+> The Yelp Open Dataset itself is a subset of Yelp data. The documentation does not specify the data inclusion methodology. What decides whether a user is included or excluded from the open dataset?
+>
+> The dataset could include an implicit bias or skew that is not representative of the population.
 
 ## Comments
 
-Most SVM libraries recommend a [hard normalization](https://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf), mapping the min and max values of a given dimension to [0,1]. However, a [soft normalization](https://neerajkumar.org/writings/svm/), using StandardScalar(), might also be feasible. 
+Most SVM libraries recommend a [hard normalization](https://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf), mapping the min and max values of a given dimension to [0,1]. However, a [soft normalization](https://neerajkumar.org/writings/svm/), using StandardScalar(), might also be feasible.  
+With a soft normalization, *review_count* is replaced by *compliment_review* received by the user as the strongest indicator for Eliteness. The value of this indicator is also not as extreme.
+
+The dataset makes no indication of a user's Elite application results. It would be nice to know whether a user was accepted or rejected for Eliteness.
