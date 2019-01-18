@@ -10,9 +10,9 @@ Analyzing Yelp user data using machine learning (SVM) to determine Yelp's Eliten
 Directly from their [site](https://www.yelp-support.com/article/What-is-Yelps-Elite-Squad?l=en_US):
 > The Yelp Elite Squad is our way of recognizing people who are active in the Yelp community and role models on and off the site. Elite-worthiness is based on a number of things, including well-written reviews, high quality tips, a detailed personal profile, an active voting and complimenting record, and a history of playing well with others.
 
-Unfortunately, Yelp does not state explicit eligibility and requirements to achieve Elite status. 
+Unfortunately, Yelp does not state explicit eligibility and requirements to be an Elite user. 
 
-Given a representative user dataset, can we leverage machine learning to determine Yelp's Eliteness criteria?
+Given Yelp's user dataset, can we leverage machine learning to determine Yelp's Eliteness criteria?
 
 ## Dataset
 
@@ -42,16 +42,18 @@ An approach using a linear SVM classifier (SVC):
 
 The SVC had a **95.44%** accuracy classifying non-Elite and Elite users.
 
+![Confusion Matrix Non-Normalized](img_res/confusion_matrix_non-normalized_minmaxscaler.png)
+
 ### Baseline Comparision
 
-Predicting the majority class will yield 50% accuracy since the subsample is equal-class-weight and the splits are stratified.
+Predicting the majority class will yield 50% accuracy since the subsample is equal-class-weighted and the splits are stratified.
 
 Intuition tells us users whom receive *compliment_writer* **or** *compliment_photo* should be Elite users by the quality of their reviews.
 
 ![Baseline Comparision Graphic](img_res/baseline_quantile_comparision_minmaxscaler.png)
 
 The best baseline accuracy achieved was **92.32%**, indicated by the green bars in the figure above. 
-> This is suspiciously close the the SVC accuracy. However, this is no surprise as the majority of non-Elite users receive zero compliments and the majority of the users in the data set are non-Elite. 
+> The baseline accuracy is suspiciously close the the SVC accuracy. However, this comes as no surprise since the majority of non-Elite users receive zero compliments and the majority of the users in the data set are non-Elite. 
 
 ### SVM Feature Weights
 
@@ -98,12 +100,12 @@ False negatives:
 >
 > This is an unavoidable / distinct characteristic of the dataset that can reduce classification accuracy.
 
-Annual Elite Status:
+Annual Elite status:
 > Eliteness only lasts for one year, the user must reapply annually. The preprocessing use the *years Elite* as the binary class attribute.
 >
 > The requirements for Eliteness may change year-to-year. The analysis does not account for the user score evolution over time. Unfortunately, the dataset only provide a users aggregate summary.
 
-Dataset Quality:  
+Dataset quality:  
 > The Yelp Open Dataset itself is a subset of Yelp data. The documentation does not specify the data inclusion methodology. What decides whether a user is included or excluded from the open dataset?
 >
 > The dataset could include an implicit bias or skew that is not representative of the population.
