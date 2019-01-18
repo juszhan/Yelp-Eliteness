@@ -93,7 +93,7 @@ The graph below shows the support vector user score histogram:
 
 ![](img_res/support_vector_score_histogram_auto-bin.png)
 
-Using the strongest indicator for Eliteness, a prospective Elite user need on approximately **70 reviews** to meet the average Elite user score.
+Using the strongest indicator for Eliteness, a prospective Elite user need on average **70 reviews** to meet the average Elite user score.
 
 ## Limitations
 
