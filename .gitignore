@@ -1,2 +1,6 @@
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# Dataset
+yelp_academic_dataset_user_processed.csv
+yelp_academic_dataset_user.json
