@@ -5,6 +5,8 @@ Analyzing Yelp user data using machine learning (SVM) to determine Yelp's Eliten
 ![Title Graphic](assets/Title.png)
 <!-- <img src="assets/Title.png" width=100%> -->
 
+**TL;DR**: a prospective Elite user will need on average **70 reviews** to meet the average Elite user score.
+
 ## What is Yelp Elite?
 
 Directly from their [site](https://www.yelp-support.com/article/What-is-Yelps-Elite-Squad?l=en_US):
@@ -93,7 +95,7 @@ The graph below shows the support vector user score histogram:
 
 ![](img_res/support_vector_score_histogram_auto-bin.png)
 
-Using the strongest indicator for Eliteness, a prospective Elite user need on average **70 reviews** to meet the average Elite user score.
+Using the strongest indicator for Eliteness, a prospective Elite user will need on average **70 reviews** to meet the average Elite user score.
 
 ## Limitations
 
@@ -103,12 +105,12 @@ False negatives:
 > This is an unavoidable / distinct characteristic of the dataset that can reduce classification accuracy.
 
 Annual Elite status:
-> Eliteness only lasts for one year, the user must reapply annually. The preprocessing uses the *years Elite* as the binary class attribute.
+> Eliteness only lasts for one year, the user must reapply annually. The preprocessing converts the *years Elite* to the binary class attribute.
 >
 > The requirements for Eliteness may change year-to-year. The analysis does not account for the user score evolution over time. Unfortunately, the dataset only provides a user's aggregate summary.
 
 Dataset quality:  
-> The Yelp Open Dataset itself is a subset of Yelp data. The documentation does not specify the data inclusion methodology. What decides whether a user is included or excluded from the open dataset?
+> The Yelp Open Dataset itself is a subset of Yelp's data. The documentation does not specify the data inclusion methodology. What decides whether a user is included or excluded from the open dataset?
 >
 > The dataset could include an implicit bias or skew that is not representative of the population.
 
