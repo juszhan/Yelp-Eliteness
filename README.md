@@ -59,7 +59,7 @@ The best baseline accuracy achieved was **92.32%**, indicated by the green bars 
 
 ### SVM Feature Weights
 
-![SVM coefficients weights](img_res/feature_weights_minmaxscaler.png)
+![SVM coefficients weights](img_res/feature_weights_minmaxscaler_rev.png)
 
 *review_count* was the strongest indicator for Eliteness, while *funny* votes sent by the user was the most negative indicator for Eliteness.
 > Advertising is Yelp's primary business model - to drive user conversion rates. Yelp wants their user reviews to influence the site visitor's decision to spend money at a business. Thus, the product is the crowd-sourced user reviews. More user reviews translate to a more valuable platform. 
